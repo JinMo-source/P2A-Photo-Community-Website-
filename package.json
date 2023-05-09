@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "java -jar ./back/build/libs/back-0.0.1-SNAPSHOT.jar & cd ./front && npm start"
+    "dev": "java -jar ./back/build/libs/back-0.0.1-SNAPSHOT.jar & cd ./front && npm start",
+    "client": "cd front && npm install",
+    "build": "cd back && gradlew clean build & npm run client"
   },
   "author": "",
   "license": "ISC"
