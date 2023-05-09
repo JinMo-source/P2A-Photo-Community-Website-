@@ -1,0 +1,11 @@
+{
+  "name": "p2a",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "java -jar ./back/build/libs/back-0.0.1-SNAPSHOT.jar & cd ./front && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}
