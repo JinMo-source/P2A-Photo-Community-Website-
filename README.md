@@ -10,9 +10,8 @@
   - 친구들과 개인 채팅
   ***
   - CRUD
-  - 해시태그
   - 랭킹 (like,Days views)
-  - 핸드폰 사진
+  - 핸드폰 사진 (미정)
   ***
   - 익숙하지는 않는 기능을 사용하여 Photo WEB / APP 기능을 구현
   - 어렵게 느껴져도 바로 포기하지 않는 마음가짐
@@ -25,8 +24,11 @@
 
 - ES6
 - ReactJS
-- React-Natives
+- React Hook
+- React-native
 - Typescript
+- nextjs
+- GraphQL
 - Bootstraps
 
 ### Back-End
@@ -57,8 +59,16 @@
 - [ ] Add Friends
 - [ ] Chat
 - [ ] Search
-- [ ] Upload
+- [ ] Upload (http://localhost:8080/photo/upload)
 - [ ] Photo / Category
 - [ ] Detail
 - [ ] Comments / Recomments
 - [ ] Like Button
+
+### 계획
+
+- 2023.05.12
+  POST : http://localhost:8080/photo/upload
+  GET : http://localhost:8080/
+  grapeQL 개념 정리
+  Create(Title,Photo,Description,Hashtags),좋아요,조회수
