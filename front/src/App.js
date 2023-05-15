@@ -1,12 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
-<html>
-  <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
-</html>;
 
 function App() {
   return (
     <div className="App">
+      <header>
+        <h1>P2A</h1>
+      </header>
       <form>
         <input type="text" placeholder="Title"></input>
         <input type="text" placeholder="Descri"></input>
