@@ -27,7 +27,6 @@
 - React Hook
 - React-native
 - Typescript
-- nextjs
 - GraphQL
 - Bootstraps
 
