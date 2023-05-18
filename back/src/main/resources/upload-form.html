@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Form</title>
+</head>
+<body>
+<h2>Upload Form</h2>
+<form action="#" th:action="@{/upload}" th:object="${uploads}" method="post">
+    <label>Title: </label>
+    <input type="text" th:field="*{title}" /><br/>
+
+    <label>Photo: </label>
+    <input type="file" name="photo" /><br/>
+
+    <label>Description: </label>
+    <input type="text" th:field="*{description}" /><br/>
+
+    <label>Hashtag: </label>
+    <input type="text" th:field="*{hashtag}" /><br/>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
