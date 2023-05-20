@@ -1,0 +1,21 @@
+type Query{
+    users : [Users]
+    pictures : [Pictures]
+}
+
+type Users {
+    id : ID!,
+    name : String!,
+    password : String!,
+    email : String!,
+    nickname : String!
+}
+
+type Pictures {
+    id : ID!,
+    title : String!,
+    description : String,
+    hashtag : [String],
+    likes : Int,
+    views : Int
+}

@@ -20,6 +20,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:14.0.0'
+	implementation 'com.graphql-java-kickstart:playground-spring-boot-starter:11.0.0'
+	implementation 'com.graphql-java-kickstart:graphql-java-tools:11.0.0'
 }
 tasks.named('test') {
 	useJUnitPlatform()
