@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Form Test</title>
+</head>
+<body>
+<h2>Upload Form</h2>
+<form action="#" th:action="@{/upload}" th:object="${uploads}" method="post" enctype="multipart/form-data">
+    <label>Title : </label>
+    <input type="text" th:field="*{title}" /> </br>
+    <label>Photo : </label>
+    <input type="file" th:field="photo" /> </br>
+    <label>Description : </label>
+    <input type="text" th:field="*{description}" /> </br>
+    <label>Hashtag: </label>
+    <input type="text" th:field="*{hashtag}" /> </br>
+    <button>Likes: <span id="likes" th:text="${likes}"></span></button>
+    <button type="button" onclick="incrementLikes()">Like</button>
+    <script th:inline="javascript">
+        function incrementLikes() {
+            var currentLikes = /*[[${likes}]]*/ 0;
+            currentLikes++;
+            document.getElementById('likes').innerText = currentLikes;
+        }
+    </script>
+</form>
+</body>
+</html>
