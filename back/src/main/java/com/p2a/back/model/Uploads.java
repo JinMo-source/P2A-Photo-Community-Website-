@@ -1,22 +1,43 @@
 package com.p2a.back.model;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.lang.String;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
 public class Uploads {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String title;
+    @Column(columnDefinition = "bytea")
     private byte[] photo;
+    @Column
+    private String description;
     @ElementCollection
     private List<String> hashtag;
+    @Column
     private int likes;
+    @Column
     private int view_count;
+    @Column
     private String nickname;
+
+    public void increaseViewCount(){
+        this.view_count++;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
