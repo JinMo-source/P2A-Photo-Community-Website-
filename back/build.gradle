@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'io.freefair.lombok' version '8.0.0'
 	id 'org.springframework.boot' version '3.0.6'
 	id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -19,9 +20,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:14.0.0'
-	implementation 'com.graphql-java-kickstart:playground-spring-boot-starter:11.0.0'
-	implementation 'com.graphql-java-kickstart:graphql-java-tools:11.0.0'
+	implementation 'org.projectlombok:lombok'
+	//GraphQL
+	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:13.0.1'
+	implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0'
+	implementation 'com.graphql-java-kickstart:graphql-java-tools:13.0.0'
+	testImplementation('com.graphql-java-kickstart:graphql-spring-boot-starter-test:14.0.0')
 }
 tasks.named('test') {
 	useJUnitPlatform()
