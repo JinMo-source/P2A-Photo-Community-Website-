@@ -14,7 +14,7 @@ public class Uploads {
     private Long id;
     @Column
     private String title;
-    @Column
+    @Column(columnDefinition = "bytea")
     private byte[] photo;
     @Column
     private String description;
