@@ -27,9 +27,8 @@
 - React Hook
 - React-native
 - Typescript
-- Redux
 - GraphQL
-- apollo
+- Apollo Client
 - Bootstraps
 
 ### Back-End

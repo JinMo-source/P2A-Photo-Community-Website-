@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import Home from "routes/Home";
 import NotFound from "routes/NotFound";
-import PhotoUpload from "components/PhotoUpload";
+import PictureUpload from "components/PictureUpload";
 
 function Navigation() {
   return (
@@ -11,7 +11,7 @@ function Navigation() {
       <NavLink to="/upload">upload</NavLink>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/upload" element={<PhotoUpload />} />
+        <Route path="/upload" element={<PictureUpload />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </header>
