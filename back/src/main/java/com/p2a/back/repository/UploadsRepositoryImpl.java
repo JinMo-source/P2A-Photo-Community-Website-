@@ -19,7 +19,6 @@ public class UploadsRepositoryImpl implements UploadsRepository{
     public Optional<Uploads> findByID(Long id) {
         return Optional.ofNullable(entityManager.find(Uploads.class,id));
     }
-
     @Override
     public Optional<List<Uploads>> findByDescription(String description) {
         return Optional.empty();
@@ -50,27 +49,22 @@ public class UploadsRepositoryImpl implements UploadsRepository{
         entityManager.persist(uploads);
         return uploads;
     }
-
     @Override
     public List<Update> saveAll(List<Uploads> uploads) {
         return null;
     }
-
     @Override
     public void delete(Uploads entity) {
 
     }
-
     @Override
     public void deleteById(Long id) {
 
     }
-
     @Override
     public void deleteAll() {
 
     }
-
     @Override
     public long count() {
         return 0;

@@ -1,26 +1,35 @@
 package com.p2a.back.resolver;
 
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class UploadResolver implements GraphQLQueryResolver {
-    public List<Users> users() {
+public class UploadResolver{
+    public Users users() {
         // Return a list of Users
-        return Arrays.asList(
-                new Users("1", "Han", "1234", "hsd@example.com", "good"),
-                new Users("2", "Jin", "1234", "pjm@example.com", "nice")
-        );
+        //new Users("1", "Han", "1234", "hsd@example.com", "good");
+        return Users.builder()
+                .id("1")
+                .name("Han")
+                .password("1234")
+                .email("hsd@example.com")
+                .nickname("good")
+                .build();
     }
-    public List<Pictures> pictures() {
+    public Pictures pictures() {
         // Return a list of Pictures
-        return Arrays.asList(
-                new Pictures("1", "Beautiful Sunset", "A stunning sunset over the ocean.", Arrays.asList("sunset", "nature"), 100, 500),
-                new Pictures("2", "Cityscape at Night", "A vibrant city skyline at night.", Arrays.asList("city", "night"), 75, 300)
-        );
+        //new Pictures("1", "Beautiful Sunset", "A stunning sunset over the ocean.", Arrays.asList("sunset", "nature"), 100, 500);
+        return Pictures.builder()
+                .id("1")
+                .title("Beautiful Sunset")
+                .description("A stunning sunset over the ocean.")
+                .hashtag(Arrays.asList("sunset", "nature"))
+                .likes(100)
+                .views(150)
+                .build();
     }
-
 }
+
