@@ -3,6 +3,8 @@ package com.p2a.back.config;
 import com.p2a.back.resolver.UploadResolver;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.*;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class GraphQLConfig {
@@ -26,12 +29,13 @@ public class GraphQLConfig {
             throw new IllegalStateException("Failed to load schema file", e);
         }
     }
+
     @Bean
     public RuntimeWiring runtimeWiring(UploadResolver uploadResolver) {
         return RuntimeWiring.newRuntimeWiring()
                 .type(TypeRuntimeWiring.newTypeWiring("Query")
-                        .dataFetcher("users", e -> uploadResolver.users())
-                        .dataFetcher("pictures", e -> uploadResolver.pictures())
+                        .dataFetcher("users", environment -> uploadResolver.users())
+                        .dataFetcher("pictures", environment -> uploadResolver.pictures())
                 )
                 .build();
     }

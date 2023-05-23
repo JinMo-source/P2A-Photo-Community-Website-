@@ -1,6 +1,10 @@
+schema {
+    query: Query
+}
 type Query{
     users : Users
     pictures : Pictures
+    testA : String
 }
 
 type Users {
