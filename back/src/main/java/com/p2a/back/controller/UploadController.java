@@ -1,6 +1,6 @@
 package com.p2a.back.controller;
 
-import com.p2a.back.model.Uploads;
+import com.p2a.back.model.Entity.Uploads;
 import com.p2a.back.repository.UploadsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UploadController {
-    private final UploadsRepository uploadsRepository;
+    private final UploadsRepository uploadsRepository2;
     public UploadController(UploadsRepository uploadsRepository) {
-        this.uploadsRepository = uploadsRepository;
+        this.uploadsRepository2 = uploadsRepository;
     }
     @GetMapping("/upload")
     public String uploadFormShow(Model model){
@@ -22,7 +22,7 @@ public class UploadController {
     @PostMapping("/upload")
     public String uploadFormSubmit(@ModelAttribute("uploads") Uploads uploads) {
         System.out.println("TEST");
-        uploadsRepository.save(uploads);
+        uploadsRepository2.save(uploads);
 
         return "redirect:/";
     }

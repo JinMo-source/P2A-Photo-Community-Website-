@@ -1,13 +1,11 @@
-package com.p2a.back.resolver;
+package com.p2a.back.builer;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.Value;
 
 @Value
 @Builder
-public class Users {
+public class UsersBuilder {
     private String id;
     private String name;
     private String password;

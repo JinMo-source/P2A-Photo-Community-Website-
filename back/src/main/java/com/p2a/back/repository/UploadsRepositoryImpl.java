@@ -1,8 +1,6 @@
 package com.p2a.back.repository;
 
-import com.p2a.back.model.Uploads;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import com.p2a.back.model.Entity.Uploads;
 import org.hibernate.sql.Update;
 import org.springframework.stereotype.Repository;
 
@@ -11,14 +9,11 @@ import java.util.Optional;
 
 @Repository
 public class UploadsRepositoryImpl implements UploadsRepository{
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     public Optional<Uploads> findByID(Long id) {
-        return Optional.ofNullable(entityManager.find(Uploads.class,id));
+        return Optional.empty();
     }
+
     @Override
     public Optional<List<Uploads>> findByDescription(String description) {
         return Optional.empty();
@@ -46,25 +41,29 @@ public class UploadsRepositoryImpl implements UploadsRepository{
 
     @Override
     public Uploads save(Uploads uploads) {
-        entityManager.persist(uploads);
-        return uploads;
+        return null;
     }
+
     @Override
     public List<Update> saveAll(List<Uploads> uploads) {
         return null;
     }
+
     @Override
     public void delete(Uploads entity) {
 
     }
+
     @Override
     public void deleteById(Long id) {
 
     }
+
     @Override
     public void deleteAll() {
 
     }
+
     @Override
     public long count() {
         return 0;

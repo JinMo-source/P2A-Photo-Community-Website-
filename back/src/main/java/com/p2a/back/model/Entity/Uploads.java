@@ -1,4 +1,4 @@
-package com.p2a.back.model;
+package com.p2a.back.model.Entity;
 
 
 import jakarta.persistence.*;

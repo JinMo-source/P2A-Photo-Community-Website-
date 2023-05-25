@@ -1,16 +1,13 @@
-package com.p2a.back.resolver;
+package com.p2a.back.builer;
 
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.List;
 
 @Value
 @Builder
-public class Pictures {
+public class BoardsBuilder {
     private String id;
     private String title;
     private String description;

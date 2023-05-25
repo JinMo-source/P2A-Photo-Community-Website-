@@ -1,9 +1,8 @@
 package com.p2a.back.repository;
 
-import com.p2a.back.model.Uploads;
+import com.p2a.back.model.Entity.Uploads;
 import org.hibernate.sql.Update;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
