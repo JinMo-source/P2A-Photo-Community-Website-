@@ -1,0 +1,6 @@
+input UsersUpdate{
+    name: String!
+    password: String!
+    email: String!
+    nickname: String!
+}

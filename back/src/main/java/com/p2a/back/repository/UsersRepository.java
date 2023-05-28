@@ -4,6 +4,8 @@ import com.p2a.back.model.Entity.EntityUsers;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -20,7 +22,8 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Repository
-public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
+@Transactional
+public class UsersRepository implements JpaRepository<EntityUsers, String> {
     @PersistenceContext
     private final EntityManager entityManager;
 
@@ -45,9 +48,9 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      */
     @Override
     public <S extends EntityUsers> S saveAndFlush(S entity) {
-        S savedEntity = save(entity);
+        S saveEntity = save(entity);
         flush();
-        return savedEntity;
+        return saveEntity;
     }
 
     /**
@@ -79,11 +82,11 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * Deletes the entities identified by the given ids using a single query. This kind of operation leaves JPAs first
      * level cache and the database out of sync. Consider flushing the {@link EntityManager} before calling this method.
      *
-     * @param integers the ids of the entities to be deleted. Must not be {@literal null}.
+     * @param strings the ids of the entities to be deleted. Must not be {@literal null}.
      * @since 2.5
      */
     @Override
-    public void deleteAllByIdInBatch(Iterable<Integer> integers) {
+    public void deleteAllByIdInBatch(Iterable<String> strings) {
 
     }
 
@@ -101,13 +104,13 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * {@link EntityNotFoundException} on first access. Some of them will reject invalid identifiers
      * immediately.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @return a reference to the entity with the given identifier.
      * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
-     * @deprecated use instead.
+     * @deprecated use {} instead.
      */
     @Override
-    public EntityUsers getOne(Integer integer) {
+    public EntityUsers getOne(String s) {
         return null;
     }
 
@@ -117,14 +120,14 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * {@link EntityNotFoundException} on first access. Some of them will reject invalid identifiers
      * immediately.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @return a reference to the entity with the given identifier.
      * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
      * @since 2.5
-     * @deprecated use instead.
+     * @deprecated use {} instead.
      */
     @Override
-    public EntityUsers getById(Integer integer) {
+    public EntityUsers getById(String s) {
         return null;
     }
 
@@ -134,13 +137,13 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * {@link EntityNotFoundException} on first access. Some of them will reject invalid identifiers
      * immediately.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @return a reference to the entity with the given identifier.
      * @see EntityManager#getReference(Class, Object) for details on when an exception is thrown.
      * @since 2.7
      */
     @Override
-    public EntityUsers getReferenceById(Integer integer) {
+    public EntityUsers getReferenceById(String s) {
         return null;
     }
 
@@ -170,15 +173,14 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
     public <S extends EntityUsers> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
-
     /**
      * Returns all instances of the type.
-     *
      * @return all entities
      */
     @Override
     public List<EntityUsers> findAll() {
-        return null;
+        return entityManager.createQuery("SELECT u FROM EntityUsers u",EntityUsers.class)
+                .getResultList();
     }
 
     /**
@@ -188,13 +190,13 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * <p>
      * Note that the order of elements in the result is not guaranteed.
      *
-     * @param integers must not be {@literal null} nor contain any {@literal null} values.
+     * @param strings must not be {@literal null} nor contain any {@literal null} values.
      * @return guaranteed to be not {@literal null}. The size can be equal or less than the number of given
      * {@literal ids}.
      * @throws IllegalArgumentException in case the given {@link Iterable ids} or one of its items is {@literal null}.
      */
     @Override
-    public List<EntityUsers> findAllById(Iterable<Integer> integers) {
+    public List<EntityUsers> findAllById(Iterable<String> strings) {
         return null;
     }
 
@@ -218,33 +220,24 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
     /**
      * Retrieves an entity by its id.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @return the entity with the given id or {@literal Optional#empty()} if none found.
      * @throws IllegalArgumentException if {@literal id} is {@literal null}.
      */
     @Override
-    public Optional<EntityUsers> findById(Integer integer) {
-        return Optional.empty();
+    public Optional<EntityUsers> findById(String id) {
+        return Optional.ofNullable(entityManager.find(EntityUsers.class, id));
     }
 
     /**
-     * find by nickname
-     * 이런식으로 추가할 수도 있겠구마이
-     * @param nickname
-     * @return
-     */
-    public Optional<EntityUsers> findByNickname(String nickname) {
-        return Optional.empty();
-    }
-    /**
      * Returns whether an entity with the given id exists.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @return {@literal true} if an entity with the given id exists, {@literal false} otherwise.
      * @throws IllegalArgumentException if {@literal id} is {@literal null}.
      */
     @Override
-    public boolean existsById(Integer integer) {
+    public boolean existsById(String s) {
         return false;
     }
 
@@ -263,11 +256,11 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * <p>
      * If the entity is not found in the persistence store it is silently ignored.
      *
-     * @param integer must not be {@literal null}.
+     * @param s must not be {@literal null}.
      * @throws IllegalArgumentException in case the given {@literal id} is {@literal null}
      */
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(String s) {
 
     }
 
@@ -290,12 +283,12 @@ public class UsersRepository implements JpaRepository<EntityUsers, Integer> {
      * <p>
      * Entities that aren't found in the persistence store are silently ignored.
      *
-     * @param integers must not be {@literal null}. Must not contain {@literal null} elements.
+     * @param strings must not be {@literal null}. Must not contain {@literal null} elements.
      * @throws IllegalArgumentException in case the given {@literal ids} or one of its elements is {@literal null}.
      * @since 2.5
      */
     @Override
-    public void deleteAllById(Iterable<? extends Integer> integers) {
+    public void deleteAllById(Iterable<? extends String> strings) {
 
     }
 

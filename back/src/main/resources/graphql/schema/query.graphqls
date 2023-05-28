@@ -1,0 +1,6 @@
+type Query{
+    #usersBuilder : Users
+    testA : String
+    getAllUsers : [Users]
+    getUserById(id : ID!) : Users
+}

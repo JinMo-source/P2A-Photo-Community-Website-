@@ -17,7 +17,7 @@ public class UserService {
         this.usersRepository = usersRepository;
     }
 
-    public EntityUsers saveAndFlushUser(AtomicReference<EntityUsers> user) {
-       return usersRepository.saveAndFlush(user.get());
+    public EntityUsers saveAndFlushUser(EntityUsers user) {
+       return usersRepository.saveAndFlush(user);
     }
 }

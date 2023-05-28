@@ -2,31 +2,6 @@ schema {
     query: Query
     mutation: Mutation
 }
-type Query{
-    users : Users
-    testA : String
-}
-
-type Mutation {
-    createUser(input: UsersInput!): Users
-}
-
-input UsersInput {
-    id : ID!
-    name: String!
-    password: String!
-    email: String!
-    nickname: String!
-}
-
-type Users {
-    id : ID!,
-    name : String!,
-    password : String!,
-    email : String!,
-    nickname : String!
-}
-
 #type Pictures {
 #    id : ID!,
 #    title : String!,

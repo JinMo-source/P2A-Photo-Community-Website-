@@ -1,9 +1,11 @@
 package com.p2a.back.model.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.mapping.List;
 
 @Entity
+@Data
 public class EntityBoards {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
