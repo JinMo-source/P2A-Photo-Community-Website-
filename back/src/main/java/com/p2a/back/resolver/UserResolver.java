@@ -39,19 +39,6 @@ public class UserResolver {
                 .nickname("good")
                 .build();
     }
-    @QueryMapping
-    public BoardsBuilder boardsBuilder() {
-        // Return a list of Pictures
-        //new Pictures("1", "Beautiful Sunset", "A stunning sunset over the ocean.", Arrays.asList("sunset", "nature"), 100, 500);
-        return BoardsBuilder.builder()
-                .id("1")
-                .title("GoodPicture")
-                .description("Very Good Picture.")
-                .hashtag(Arrays.asList("good", "nice"))
-                .likes(100)
-                .views(150)
-                .build();
-    }
     /**
      * CREATE
      * @param user
@@ -62,26 +49,10 @@ public class UserResolver {
         log.info("User created: {}", user);
         Optional.ofNullable(user)
                 .orElseThrow(NullPointerException::new);
+
         return userService.saveAndFlushUser(mapToEntity(user));
     }
 
-    /**
-     * UPDATE
-     * @param id
-     * @param user
-     * @return
-     */
-    @MutationMapping
-    public EntityUsers updateUser(@Argument("id") String id, @Argument("input") Users user){
-        log.info("id info: {}, user info: {}",id, user);
-        Optional<EntityUsers> findUser = usersRepository.findById(id);
-        if (findUser.isPresent()){
-            return getEntityUsers(user, findUser.get());
-        }
-        log.error("UserResolver: User with ID '{}' does not exist!", id);
-        System.out.println("UserResolver line(79): 찾으려는 ID가 존재하지 않습니다!");
-        return null;
-    }
     /**
      * READ
      * ALL USER
@@ -102,6 +73,38 @@ public class UserResolver {
     public Optional<EntityUsers> getUserById(@Argument("id") String id) {
         return usersRepository.findById(id);
     }
+
+    /**
+     * UPDATE
+     * @param id
+     * @param user
+     * @return
+     */
+    @MutationMapping
+    public EntityUsers updateUser(@Argument("id") String id, @Argument("input") Users user){
+        log.info("id info: {}, user info: {}",id, user);
+        Optional<EntityUsers> findUser = usersRepository.findById(id);
+        if (findUser.isPresent()){
+            return getEntityUsers(user, findUser.get());
+        }
+        log.error("UserResolver: User with ID '{}' does not exist!", id);
+        System.out.println("UserResolver line(79): 찾으려는 ID가 존재하지 않습니다!");
+        return null;
+    }
+
+    @MutationMapping
+    public boolean deleteUserById(@Argument("id") String id){
+        Optional<EntityUsers> deleteUser = usersRepository.findById(id);
+        if (deleteUser.isPresent()){
+            usersRepository.delete(deleteUser.get());
+            log.atInfo();
+            return true;
+        } else {
+            log.atError();
+            return false;
+        }
+    }
+
 
 
     private EntityUsers getEntityUsers(Users user, EntityUsers findUser) {

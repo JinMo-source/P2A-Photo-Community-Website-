@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+@Slf4j
 @Repository
 @Transactional
 public class UsersRepository implements JpaRepository<EntityUsers, String> {
@@ -220,7 +222,7 @@ public class UsersRepository implements JpaRepository<EntityUsers, String> {
     /**
      * Retrieves an entity by its id.
      *
-     * @param s must not be {@literal null}.
+     * @param id must not be {@literal null}.
      * @return the entity with the given id or {@literal Optional#empty()} if none found.
      * @throws IllegalArgumentException if {@literal id} is {@literal null}.
      */
@@ -275,7 +277,8 @@ public class UsersRepository implements JpaRepository<EntityUsers, String> {
      */
     @Override
     public void delete(EntityUsers entity) {
-
+        log.atInfo();
+        entityManager.remove(entity);
     }
 
     /**

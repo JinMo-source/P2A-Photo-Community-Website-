@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Upload Form Test</title>
@@ -10,8 +10,8 @@
 <form action="/upload" th:object="${uploads}" method="post" enctype="multipart/form-data">
     <label>Title : </label>
     <input type="text" name = "title" th:field="*{title}" /> </br>
-    <label>Photo : </label>
-    <input type="file" name="photo" /> </br>
+<!--    <label>Photo : </label>-->
+<!--    <input type="file" name="photo" /> </br>-->
     <label>Description : </label>
     <input type="text" name ="description" th:field="*{description}" /> </br>
     <label>Hashtag: </label>

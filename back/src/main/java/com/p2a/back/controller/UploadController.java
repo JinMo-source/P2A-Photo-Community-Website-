@@ -20,12 +20,10 @@ public class UploadController {
         return "upload-form";
     }
     @PostMapping("/upload")
-    public String uploadFormSubmit(@ModelAttribute("uploads") Uploads uploads) {
+    public String uploadFormSubmit(@ModelAttribute("uploads") Uploads uploads, Model model) {
         System.out.println("TEST");
-        uploadsRepository2.save(uploads);
-
-        return "redirect:/";
+        model.addAttribute("result", "Data received: " + uploads.toString());
+        //uploadsRepository2.save(uploads);
+        return "upload-result";
     }
-
-
 }

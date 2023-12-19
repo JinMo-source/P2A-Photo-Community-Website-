@@ -2,6 +2,7 @@ package com.p2a.back.model.Entity;
 
 
 import jakarta.persistence.*;
+import lombok.Value;
 
 import java.lang.String;
 import java.util.List;
